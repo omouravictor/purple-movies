@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PurpleMovies</string>
+    <string name="title_best_rated">Melhores avaliados</string>
+    <string name="title_watch_later">Assistir mais tarde</string>
+</resources>
