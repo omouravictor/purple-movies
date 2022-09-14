@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_best_rated">
         <action
             android:id="@+id/action_bestRatedFragment_to_movieDetailsFragment"
-            app:destination="@id/movie_details_fragment"/>
+            app:destination="@id/movie_details_fragment" />
     </fragment>
     <fragment
         android:id="@+id/movie_details_fragment"
@@ -27,6 +27,6 @@
         <action
             android:id="@+id/action_movieDetailsFragment_self"
             app:destination="@id/movie_details_fragment"
-            app:popUpTo="@id/movie_details_fragment"/>
+            app:popUpTo="@id/movie_details_fragment" />
     </fragment>
 </navigation>
