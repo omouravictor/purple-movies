@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_best_rated"
+        android:id="@+id/nav_best_rated"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_best_rated" />
 
     <item
-        android:id="@+id/navigation_watch_later"
+        android:id="@+id/nav_watch_later"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_watch_later" />
 

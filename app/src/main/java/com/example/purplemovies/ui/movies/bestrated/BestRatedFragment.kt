@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.purplemovies.databinding.FragmentBestRatedBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BestRatedFragment : Fragment() {
 
     private var _binding: FragmentBestRatedBinding? = null

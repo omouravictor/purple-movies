@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/layout/fragment_best_rated.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/layout/fragment_movie_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/layout/fragment_watch_later.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/menu/app_nav_menu.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/omouravictor/AndroidStudioProjects/PurpleMovies/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>

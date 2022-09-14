@@ -7,7 +7,7 @@
     tools:context=".ui.movies.bestrated.BestRatedFragment">
 
     <TextView
-        android:id="@+id/bestRatedText"
+        android:id="@+id/best_rated_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
