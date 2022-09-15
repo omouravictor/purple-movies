@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.purplemovies.databinding.FragmentBestRatedBinding
+import com.example.purplemovies.ui.UiResultStatus
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,9 +18,7 @@ class BestRatedFragment : Fragment() {
     private val viewModel: BestRatedViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentBestRatedBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -26,12 +26,34 @@ class BestRatedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
+        initSwipeRefreshLayout()
+        initMoviesResultObserve()
     }
 
-    private fun initRecyclerView() {
-        viewModel.movies.observe(viewLifecycleOwner) {
-            binding.bestRatedRecyclerView.adapter = BestRatedAdapter(it)
+    private fun initMoviesResultObserve() {
+        viewModel.moviesResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiResultStatus.Loading -> {
+                    binding.bestRatedRecyclerView.isVisible = false
+                    binding.swipeRefreshLayout.isRefreshing = false
+                    binding.progressBar.isVisible = true
+                }
+                is UiResultStatus.Success -> {
+                    binding.bestRatedRecyclerView.adapter = BestRatedAdapter(it.data)
+                    binding.bestRatedRecyclerView.isVisible = true
+                    binding.progressBar.isVisible = false
+                }
+                is UiResultStatus.Error -> {
+                    binding.bestRatedRecyclerView.isVisible = false
+                    binding.progressBar.isVisible = false
+                }
+            }
+        }
+    }
+
+    private fun initSwipeRefreshLayout() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getBestRatedMovies()
         }
     }
 }
