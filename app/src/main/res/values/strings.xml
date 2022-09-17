@@ -3,4 +3,6 @@
     <string name="title_best_rated">Melhores avaliados</string>
     <string name="title_movie_details">Detalhes</string>
     <string name="title_watch_later">Assistir mais tarde</string>
+    <string name="there_was_an_error_retrieving_the_data">Houve um erro ao recuperar os dados :(</string>
+    <string name="try_again">Tentar novamente</string>
 </resources>

@@ -28,24 +28,27 @@ class BestRatedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initSwipeRefreshLayout()
         initMoviesResultObserve()
+        initErrorLayout()
     }
 
     private fun initMoviesResultObserve() {
         viewModel.moviesResult.observe(viewLifecycleOwner) {
             when (it) {
                 is UiResultStatus.Loading -> {
-                    binding.bestRatedRecyclerView.isVisible = false
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.progressBar.isVisible = true
+                    binding.bestRatedRecyclerView.isVisible = false
+                    binding.includeViewMoviesErrorState.layoutError.isVisible = false
                 }
                 is UiResultStatus.Success -> {
-                    binding.bestRatedRecyclerView.adapter = BestRatedAdapter(it.data)
-                    binding.bestRatedRecyclerView.isVisible = true
                     binding.progressBar.isVisible = false
+                    binding.bestRatedRecyclerView.isVisible = true
+                    binding.bestRatedRecyclerView.adapter = BestRatedAdapter(it.data)
                 }
                 is UiResultStatus.Error -> {
-                    binding.bestRatedRecyclerView.isVisible = false
                     binding.progressBar.isVisible = false
+                    binding.bestRatedRecyclerView.isVisible = false
+                    binding.includeViewMoviesErrorState.layoutError.isVisible = true
                 }
             }
         }
@@ -53,6 +56,12 @@ class BestRatedFragment : Fragment() {
 
     private fun initSwipeRefreshLayout() {
         binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getBestRatedMovies()
+        }
+    }
+
+    private fun initErrorLayout() {
+        binding.includeViewMoviesErrorState.buttonTryAgain.setOnClickListener {
             viewModel.getBestRatedMovies()
         }
     }
