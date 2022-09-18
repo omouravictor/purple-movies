@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/watch_later_fragment"
         android:name="com.example.purplemovies.ui.movies.watchlater.WatchLaterFragment"
-        android:label="@string/title_watch_later"
+        android:label="@string/watch_later"
         tools:layout="@layout/fragment_watch_later">
         <action
             android:id="@+id/action_watchLaterFragment_to_movieDetailsFragment"

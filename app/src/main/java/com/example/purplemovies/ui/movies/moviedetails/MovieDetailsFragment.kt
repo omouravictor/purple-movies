@@ -5,30 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.purplemovies.R
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.fragment.app.viewModels
+import com.example.purplemovies.databinding.FragmentMovieDetailsBinding
 
-@AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MovieDetailsFragment()
-    }
-
-    private lateinit var viewModel: MovieDetailsViewModel
+    private lateinit var binding: FragmentMovieDetailsBinding
+    private val viewModel: MovieDetailsViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movie_details, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MovieDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.loadMovieDetails(binding, arguments)
     }
-
 }

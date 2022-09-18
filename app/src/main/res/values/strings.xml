@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">PurpleMovies</string>
-    <string name="title_best_rated">Melhores avaliados</string>
-    <string name="title_movie_details">Detalhes</string>
-    <string name="title_watch_later">Assistir mais tarde</string>
+    <string name="best_rated">Melhores avaliados</string>
+    <string name="details">Detalhes</string>
+    <string name="watch_later_line_break">Assistir\nmais tarde</string>
+    <string name="watch_later">Assistir mais tarde</string>
     <string name="there_was_an_error_retrieving_the_data">Houve um erro ao recuperar os dados :(</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="movie_tittle">Título do filme</string>
+    <string name="release_date">Data de lançamento</string>
 </resources>

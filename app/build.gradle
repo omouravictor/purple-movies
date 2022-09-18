@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id("kotlin-parcelize")
 }
 
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdk 32
@@ -49,7 +51,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //Navigation
-    def navigation_version = "2.5.2"
     implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
     implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
 
@@ -74,4 +75,14 @@ dependencies {
     //SwipeRefreshLayout
     def swipe_refresh_layout = "1.1.0"
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout")
+
+    //JodaTime
+    def joda_time = "2.11.1"
+    implementation "joda-time:joda-time:$joda_time"
+
+    //Room
+    def room_version = "2.4.3"
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    androidTestImplementation("androidx.room:room-testing:$room_version")
 }
