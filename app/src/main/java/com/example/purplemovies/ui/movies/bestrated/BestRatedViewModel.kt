@@ -3,19 +3,23 @@ package com.example.purplemovies.ui.movies.bestrated
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.purplemovies.data.local.entity.MovieEntity
 import com.example.purplemovies.data.network.model.RequestStatus
-import com.example.purplemovies.data.network.model.tmdbapi.movies.MoviesResponseItem
+import com.example.purplemovies.data.network.model.tmdbapi.movies.MoviesResponse
 import com.example.purplemovies.ui.UiResultStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class BestRatedViewModel @Inject constructor(
+    private val localRepository: BestRatedLocalRepository,
     private val apiRepository: BestRatedApiRepository
 ) : ViewModel() {
 
-    var moviesResult = MutableLiveData<UiResultStatus<List<MoviesResponseItem>>>()
+    private var movieFromBank: Flow<List<MovieEntity>> = localRepository.getAllMovies()
+    val moviesResult = MutableLiveData<UiResultStatus<List<MovieEntity>>>()
 
     init {
         getBestRatedMovies()
@@ -26,12 +30,36 @@ class BestRatedViewModel @Inject constructor(
             moviesResult.postValue(UiResultStatus.Loading)
             when (val request = apiRepository.getMovies()) {
                 is RequestStatus.Success -> {
-                    moviesResult.postValue(UiResultStatus.Success(request.data))
+                    val savedMovies = saveOnDb(request.data)
+                    moviesResult.postValue(UiResultStatus.Success(savedMovies))
                 }
                 is RequestStatus.Error -> {
-                    moviesResult.postValue(UiResultStatus.Error(request.errorMessage))
+                    movieFromBank.collect {
+                        if (it.isNotEmpty())
+                            moviesResult.postValue(UiResultStatus.Success(it))
+                        else
+                            moviesResult.postValue(UiResultStatus.Error(request.errorMessage))
+                    }
                 }
             }
         }
+    }
+
+    private suspend fun saveOnDb(data: MoviesResponse): List<MovieEntity> {
+        val moviesList: MutableList<MovieEntity> = mutableListOf()
+        data.forEach {
+            moviesList.add(
+                MovieEntity(
+                    it.id,
+                    it.poster_url,
+                    it.release_date,
+                    it.title,
+                    it.vote_average
+                )
+            )
+        }
+        localRepository.removeAllMovies()
+        localRepository.insertMovies(moviesList)
+        return moviesList
     }
 }

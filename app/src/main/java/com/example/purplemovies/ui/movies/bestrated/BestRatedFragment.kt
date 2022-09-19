@@ -43,6 +43,7 @@ class BestRatedFragment : Fragment() {
                 is UiResultStatus.Success -> {
                     binding.progressBar.isVisible = false
                     binding.bestRatedRecyclerView.isVisible = true
+                    binding.includeViewMoviesErrorState.layoutError.isVisible = false
                     binding.bestRatedRecyclerView.adapter = BestRatedAdapter(it.data)
                 }
                 is UiResultStatus.Error -> {

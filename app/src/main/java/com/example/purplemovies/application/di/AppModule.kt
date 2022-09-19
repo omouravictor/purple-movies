@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.example.purplemovies.data.local.MovieRoomDatabase
 import com.example.purplemovies.data.local.dao.MovieDao
 import com.example.purplemovies.data.network.model.tmdbapi.TmdbApi
-import com.example.purplemovies.ui.movies.bestrated.BestRatedApiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,10 +23,6 @@ object AppModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(TmdbApi::class.java)
-
-    @Provides
-    fun provideBestRatedApiRepository(tmdbApi: TmdbApi): BestRatedApiRepository =
-        BestRatedApiRepository(tmdbApi)
 
     @Provides
     fun provideMovieRoomDatabase(

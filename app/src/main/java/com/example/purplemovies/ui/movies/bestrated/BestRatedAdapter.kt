@@ -6,11 +6,10 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.purplemovies.R
-import com.example.purplemovies.data.network.model.tmdbapi.movies.MoviesResponseItem
-import com.example.purplemovies.data.network.model.tmdbapi.movies.toMovieEntity
+import com.example.purplemovies.data.local.entity.MovieEntity
 import com.example.purplemovies.databinding.MovieItemLayoutBinding
 
-class BestRatedAdapter(private var list: List<MoviesResponseItem>) :
+class BestRatedAdapter(private var list: List<MovieEntity>) :
     RecyclerView.Adapter<BestRatedAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MovieViewHolder(
@@ -28,7 +27,7 @@ class BestRatedAdapter(private var list: List<MoviesResponseItem>) :
 
         private val bestRatedPosterImage = binding.posterImageMovie
 
-        fun bind(movie: MoviesResponseItem) {
+        fun bind(movie: MovieEntity) {
             Glide.with(itemView)
                 .load(movie.poster_url)
                 .error(R.drawable.ic_baseline_broken_image)
@@ -36,7 +35,7 @@ class BestRatedAdapter(private var list: List<MoviesResponseItem>) :
 
             itemView.setOnClickListener {
                 val action = BestRatedFragmentDirections
-                    .actionBestRatedFragmentToMovieDetailsFragment(movie.toMovieEntity())
+                    .actionBestRatedFragmentToMovieDetailsFragment(movie)
                 findNavController(it).navigate(action)
             }
         }
