@@ -14,12 +14,10 @@ class MovieDetailsViewModel : ViewModel() {
     fun loadMovieDetails(binding: FragmentMovieDetailsBinding, arguments: Bundle?) {
         val view = binding.root
 
-        val movie = arguments?.get("movie_argument")?.also {
+        arguments?.get("movie_argument")?.also {
             it as MovieEntity
             setMovieDetails(view, binding, it)
         }
-
-        if (movie == null) setBrokenImages(view, binding)
     }
 
     private fun setMovieDetails(
@@ -43,18 +41,5 @@ class MovieDetailsViewModel : ViewModel() {
         binding.textViewMovieDetailsReleaseDate.text = dateRelease.year.toString()
 
         binding.textViewMovieDetailsVoteAverage.text = movie.vote_average.toString()
-    }
-
-    private fun setBrokenImages(
-        view: ScrollView,
-        binding: FragmentMovieDetailsBinding
-    ) {
-        Glide.with(view)
-            .load(R.drawable.ic_baseline_broken_image)
-            .into(binding.imageViewMovieBackdrop)
-
-        Glide.with(view)
-            .load(R.drawable.ic_baseline_broken_image)
-            .into(binding.includeMovieItemLayout.posterImageMovie)
     }
 }
