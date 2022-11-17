@@ -13,7 +13,7 @@ interface TmdbApi {
     ): Response<MoviesResponse>
 
     @GET("/movies-v2")
-    suspend fun getMovieDetail(
+    suspend fun getMovieDetail( //
         @Query("id") movieId: Int
     ): Response<MovieDetailsResponse>
 

@@ -1,4 +1,4 @@
-package com.example.purplemovies.ui.movies.bestrated
+package com.example.purplemovies.data.repository
 
 import com.example.purplemovies.data.local.dao.MovieDao
 import com.example.purplemovies.data.local.entity.MovieEntity

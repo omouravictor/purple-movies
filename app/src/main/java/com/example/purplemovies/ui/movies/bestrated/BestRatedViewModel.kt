@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.purplemovies.data.local.entity.MovieEntity
 import com.example.purplemovies.data.network.model.RequestStatus
 import com.example.purplemovies.data.network.model.tmdbapi.movies.MoviesResponse
+import com.example.purplemovies.data.repository.BestRatedApiRepository
+import com.example.purplemovies.data.repository.BestRatedLocalRepository
 import com.example.purplemovies.ui.UiResultStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

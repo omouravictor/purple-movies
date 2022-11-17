@@ -36,7 +36,7 @@ class BestRatedAdapter(private var list: List<MovieEntity>) :
             itemView.setOnClickListener {
                 val action = BestRatedFragmentDirections
                     .actionBestRatedFragmentToMovieDetailsFragment(movie)
-                findNavController(it).navigate(action)
+                findNavController(it).navigate(action) // Não é bom colocar navController aqui dentro
             }
         }
     }

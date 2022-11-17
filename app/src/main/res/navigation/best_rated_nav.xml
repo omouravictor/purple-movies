@@ -21,10 +21,6 @@
         android:name="com.example.purplemovies.ui.movies.moviedetails.MovieDetailsFragment"
         android:label="@string/details"
         tools:layout="@layout/fragment_movie_details">
-        <action
-            android:id="@+id/action_movieDetailsFragment_self"
-            app:destination="@id/movie_details_fragment"
-            app:popUpTo="@id/movie_details_fragment" />
         <argument
             android:name="movie_argument"
             app:argType="com.example.purplemovies.data.local.entity.MovieEntity" />
